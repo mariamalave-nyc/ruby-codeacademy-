@@ -1,0 +1,43 @@
+movies = {
+  StarWars: 2.8, 
+  Divergent: 3.7,
+  Joker: 5.0,
+  Birds_of_Prey: 4.9
+  }
+
+puts "What would you like to do? "
+
+choice = gets.chomp
+
+case choice
+when "add"
+  puts "What movie would you like to add?"
+  title = gets.chomp
+  if movies[title.to_sym].nil?
+    puts "What's the rating? (Type a number from 0 to 5.0)"
+    rating = gets.chomp
+    movies[title.to_sym] = rating.to_i
+  else
+    puts "The movie already exists" 
+  end   
+when "update"
+  puts "Enter a movie title!"
+  title = gets.chomp
+  if movies[title.to_sym].nil?
+    puts "Movie is not recorded!"
+  else puts "Enter a new rating (0-5)"
+    rating = gets.chomp
+    movies[title.to_sym] = rating.to_i
+   end 
+when "display"
+  movies.each { |movie, rating| puts "#{movie}: #{rating}"}
+when "delete"
+  puts "Enter which title you would like to delete!"
+  title = gets.chomp
+  if movies[title.to_sym].nil?
+    puts "Title does not exist!"
+  else movies.delete(title.to_sym)
+  end
+else
+  puts "Error!"
+end
